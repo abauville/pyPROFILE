@@ -1,0 +1,104 @@
+Interpretation of O2-profile in paper (Fig. 3)
+
+-0.02     Depth at top of calculation domain
+
+ 0.27     Depth at bottom of calculation domain
+
+ 7        Max number of equally spaced zones in interpretation (1 to 12)
+
+ 3        Type of boundary conditions (1:t=C b=C, 2:t=C t=F, 3:b=C b=F 4:t=C b=F 5:t=F b=C)
+
+ 0.22573  First boundary condition
+
+ 0.0      Second boundary condition
+
+11.7E-06  Diffusivity in water (D)
+
+ 2        Expression for sediment diffusivity (Ds) (1: Ds=FI*D, 2: Ds=FI**2*D, 3: Ds=D/(1+3*(1-FI))
+
+ 321.4123 Concentration in water column (C0)
+
+-1.0E+20  Minimum for production rate
+
+ 0.0      Maximum for production rate
+
+ 0.001    Maximum deviation (in %) when accepting a calculated minimum
+
+ 0.01     Level of significance in the F statistics
+
+    X    FI   DB  ALFA           C
+
+-0.07     1    0     0    320.5841
+
+-0.06     1    0     0    320.5841
+
+-0.05     1    0     0    320.5841
+
+-0.04     1    0     0    320.5841
+
+-0.03     1    0     0    320.8101
+
+-0.02	  1    0     0    321.4123
+
+-0.01     1    0     0    313.216
+
+ 0.00   0.8    0     0    300.8086
+
+ 0.01   0.8    0     0    281.7761
+
+ 0.02   0.8    0     0    261.9157
+
+ 0.03   0.8    0     0    243.6379
+
+ 0.04   0.8    0     0    224.3779
+
+ 0.05   0.8    0     0    206.9242
+
+ 0.06   0.8    0     0    190.2216
+
+ 0.07   0.8    0     0    174.5708
+
+ 0.08   0.8    0     0    159.2973
+
+ 0.09   0.8    0     0    145.2283
+
+ 0.1    0.8    0     0    131.6854
+
+ 0.11   0.8    0     0    118.5933
+
+ 0.12   0.8    0     0    106.4043
+
+ 0.13   0.8    0     0     92.86111
+
+ 0.14   0.8    0     0     81.57462
+
+ 0.15   0.8    0     0     71.19043
+
+ 0.16   0.8    0     0     61.18299
+
+ 0.17   0.8    0     0     51.77705
+
+ 0.18   0.8    0     0     42.29603
+
+ 0.19   0.8    0     0     34.32065
+
+ 0.2    0.8    0     0     27.17016
+
+ 0.21   0.8    0     0     19.87087
+
+ 0.22   0.8    0     0     13.77456
+
+ 0.23   0.8    0     0      9.03325
+
+ 0.24   0.8    0     0      4.66795
+
+ 0.25   0.8    0     0      2.40918
+
+ 0.26   0.8    0     0      0.75301
+
+ 0.27   0.8    0     0      0.22573
+
+ 0.28   0.8    0     0      0
+
+ 0.29   0.8    0     0      0
+

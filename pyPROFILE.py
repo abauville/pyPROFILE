@@ -143,7 +143,7 @@ def set_BC(BC_type, BC_val1, BC_val2, Dx, R):
 
 
 
-def SSE(R_vals, C_GT, X, PA, K):
+def SSE(R_vals, C_GT, X, PA, K, BC):
     x_R = np.linspace(X[0], X[-1], len(R_vals))
     f = interp1d(x_R, R_vals, kind='linear')
     R_interp = f(X)
@@ -202,7 +202,7 @@ df: pandas DataFrame
     # Optimize R
     # =================
     R_vals_0 = np.zeros(n_r)
-    opt_result = opt.minimize(SSE,R_vals_0,args=(C_GT, X, PA, K))
+    opt_result = opt.minimize(SSE,R_vals_0,args=(C_GT, X, PA, K, BC))
     R_opt = opt_result.x
 
     # Add model data to the dataframe and return

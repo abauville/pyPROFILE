@@ -10,6 +10,13 @@ Projet avec Dewi: optimization de la productivite en O2 des organismes en foncti
 d'apres le papier de Berg et al 1998
 """
 
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.sparse import diags
+from scipy.sparse.linalg import spsolve
+import scipy.optimize as opt
+from scipy.interpolate import interp1d
+import pandas as pd
 
 def compute_C(R, BC,  X, PA, K):
     # Solves the system of equations following eq. (1) to (10) of Berg et al., 1998

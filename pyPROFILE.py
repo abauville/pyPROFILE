@@ -18,11 +18,6 @@ import scipy.optimize as opt
 from scipy.interpolate import interp1d
 import pandas as pd
 
-
-
-
-
-
 def compute_C(R, BC,  X, PA, K):
     # Solves the system of equations following eq. (1) to (10) of Berg et al., 1998
 
@@ -61,43 +56,43 @@ def compute_C(R, BC,  X, PA, K):
 
     A_mat = diags(AA[1:], -1, shape=(n,n)) + diags(BB, 0, shape=(n,n)) + diags(CC[:-1],1, shape=(n,n))
     RHS = DD.copy()
-
+    A_mat_lil = A_mat.tolil()
     # Apply BC
     # ===================
     if top_BC_type==0:
         # Dirichlet top
-        A_mat[0,0] = 1.0
-        A_mat[0,1] = 0.0
+        A_mat_lil[0,0] = 1.0
+        A_mat_lil[0,1] = 0.0
         RHS[0] = top_BC_val
     elif top_BC_type==1:
         # Neumann top
         BB0 = (K[1]) / (Dx/2)
         CC0 = - (K[1] ) / (Dx/2)
         RHS[0] = top_BC_val
-        A_mat[0,0] = BB0
-        A_mat[0,1] = CC0
+        A_mat_lil[0,0] = BB0
+        A_mat_lil[0,1] = CC0
     else:
         raise ValueError('Unknwon top_BC_type')
 
     if bot_BC_type==0:
         # Dirichlet bottom
-        A_mat[-1,-1] = 1.0
-        A_mat[-1,-2] = 0.0
+        A_mat_lil[-1,-1] = 1.0
+        A_mat_lil[-1,-2] = 0.0
         RHS[-1] = bot_BC_val
     elif bot_BC_type==1:
         # Neumann top
         AA0 = -(K[-2] ) / (Dx/2)
         BB0 =  (K[-2]) / (Dx/2)
         RHS[-1] = bot_BC_val
-        A_mat[-1,-1] = BB0
-        A_mat[-1,-2] = AA0
+        A_mat_lil[-1,-1] = BB0
+        A_mat_lil[-1,-2] = AA0
     else:
         raise ValueError('Unknwon bot_BC_type')
 
 
     # Solve the system of equations for C
     # ===================
-    C = spsolve(A_mat, RHS)
+    C = spsolve(A_mat_lil.tocsc(), RHS)
     return C
 
 
@@ -147,7 +142,7 @@ def SSE(R_vals, C_GT, X, PA, K, BC):
     x_R = np.linspace(X[0], X[-1], len(R_vals))
     f = interp1d(x_R, R_vals, kind='linear')
     R_interp = f(X)
-
+    
     SSE = 0
     for i in range(C_GT.shape[0]):
         gt = C_GT[i,:]
@@ -202,6 +197,7 @@ df: pandas DataFrame
     # Optimize R
     # =================
     R_vals_0 = np.zeros(n_r)
+    BC=[]
     opt_result = opt.minimize(SSE,R_vals_0,args=(C_GT, X, PA, K, BC))
     R_opt = opt_result.x
 
